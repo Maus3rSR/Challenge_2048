@@ -41,9 +41,14 @@ export class MoveTile {
         nextIndex += iterationDirection;
       }
     } else {
-      if (grid[1][0] === null) {
+      if (grid[1][0] === null && direction === 'DOWN') {
         grid[1][0] = grid[0][0];
         grid[0][0] = null;
+      }
+
+      if (grid[0][0] === null && direction === 'UP') {
+        grid[0][0] = grid[1][0];
+        grid[1][0] = null;
       }
     }
 
