@@ -28,11 +28,15 @@ export class MoveTile {
   toDirection(direction: Direction) {
     const grid = this.gameRepository.fetch();
 
+    const iterationDirection = Array.from<Direction>(['UP', 'LEFT']).includes(
+      direction,
+    )
+      ? -1
+      : 1;
+
     if (Array.from<Direction>(['LEFT', 'RIGHT']).includes(direction)) {
       let columnIndex = 0;
       while (grid[columnIndex] !== undefined) {
-        const iterationDirection = direction === 'LEFT' ? -1 : 1;
-
         let rowIndex = direction === 'LEFT' ? grid[columnIndex].length - 1 : 0;
         let nextRowIndex = rowIndex + iterationDirection;
 
@@ -47,17 +51,18 @@ export class MoveTile {
         columnIndex++;
       }
     } else if (Array.from<Direction>(['UP', 'DOWN']).includes(direction)) {
-      const iterationDirection = direction === 'UP' ? -1 : 1;
+      let columnIndex = direction === 'UP' ? grid.length - 1 : 0;
+      let nextColumnIndex = columnIndex + iterationDirection;
 
-      let currentIndex = direction === 'UP' ? grid.length - 1 : 0;
-      let nextIndex = currentIndex + iterationDirection;
+      while (
+        grid[nextColumnIndex] !== undefined &&
+        grid[nextColumnIndex][0] === null
+      ) {
+        grid[nextColumnIndex][0] = grid[columnIndex][0];
+        grid[columnIndex][0] = null;
 
-      while (grid[nextIndex] !== undefined && grid[nextIndex][0] === null) {
-        grid[nextIndex][0] = grid[currentIndex][0];
-        grid[currentIndex][0] = null;
-
-        currentIndex += iterationDirection;
-        nextIndex += iterationDirection;
+        columnIndex += iterationDirection;
+        nextColumnIndex += iterationDirection;
       }
     }
 
