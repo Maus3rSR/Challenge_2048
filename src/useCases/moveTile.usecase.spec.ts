@@ -42,14 +42,15 @@ export class MoveTile {
       }
     } else {
       if (direction === 'DOWN') {
-        if (grid[1][0] === null) {
-          grid[1][0] = grid[0][0];
-          grid[0][0] = null;
-        }
+        let currentIndex = 0;
+        let nextIndex = currentIndex + 1;
 
-        if (grid[2] !== undefined && grid[2][0] === null) {
-          grid[2][0] = grid[1][0];
-          grid[1][0] = null;
+        while (grid[nextIndex] !== undefined && grid[nextIndex][0] === null) {
+          grid[nextIndex][0] = grid[currentIndex][0];
+          grid[currentIndex][0] = null;
+
+          currentIndex += 1;
+          nextIndex += 1;
         }
       }
 
