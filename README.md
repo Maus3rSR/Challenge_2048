@@ -7,6 +7,8 @@ Les messages des commits ont été laissés de côté spécifiquement pour ce d�
 
 De cette manière (pas optimal pour un vrai projet nous sommes d'accord) nous pouvons suivre l'évolution itérative des cas d'utilisation.
 
+[Voir un exemple sur le cas d'utilisation "Déplacer les tuiles"](https://github.githistory.xyz/Maus3rSR/Challenge_2048/blob/main/src/useCases/moveTile.usecase.spec.ts)
+
 _PS: Les baby steps n'ont pas été respecté de manière stricte ici._
 _Le dépôt a été utilisé pour expérimenter la conception du jeu 2048 et de l'utiliser pour l'implémenter dans un projet d'étudiants avec une application web, ce qui m'a poussé à être un peu plus pragmatique sur certaines opérations._
 
