@@ -9,7 +9,6 @@ export enum DirectionEnum {
 
 export type Direction = `${DirectionEnum}`;
 export type TileValue = number | null;
-export type GridRow = TileValue[];
 export type Grid = TileValue[][];
 
 export interface Game2048Repository {
@@ -54,8 +53,8 @@ export class MoveTile {
 
 type MoveGridTest = {
   direction: Direction;
-  grid: GridRow;
-  expectedGrid: GridRow;
+  grid: Grid;
+  expectedGrid: Grid;
 };
 
 let repository: StubGame2048Repository;
@@ -68,27 +67,27 @@ describe('Move tiles to a specific direction', () => {
   it.each<MoveGridTest>([
     {
       direction: 'RIGHT',
-      grid: [2, null],
-      expectedGrid: [null, 2],
+      grid: [[2, null]],
+      expectedGrid: [[null, 2]],
     },
     {
       direction: 'RIGHT',
-      grid: [2, null, null],
-      expectedGrid: [null, null, 2],
+      grid: [[2, null, null]],
+      expectedGrid: [[null, null, 2]],
     },
     {
       direction: 'LEFT',
-      grid: [null, null, 2],
-      expectedGrid: [2, null, null],
+      grid: [[null, null, 2]],
+      expectedGrid: [[2, null, null]],
     },
   ])(
     'Should move tiles to the <$direction> edge: $grid -> $expectedGrid',
     ({ direction, grid, expectedGrid }) => {
-      repository.grid = [grid];
+      repository.grid = grid;
 
       new MoveTile(repository).toDirection(direction);
 
-      expect(repository.grid[0]).toEqual<GridRow>(expectedGrid);
+      expect(repository.grid).toEqual<Grid>(expectedGrid);
     },
   );
 });
