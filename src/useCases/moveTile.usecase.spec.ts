@@ -1,13 +1,6 @@
 import { describe, it } from 'vitest';
 
-export enum DirectionEnum {
-  UP = 'UP',
-  LEFT = 'LEFT',
-  RIGHT = 'RIGHT',
-  DOWN = 'DOWN',
-}
-
-export type Direction = `${DirectionEnum}`;
+export type Direction = 'UP' | 'LEFT' | 'RIGHT' | 'DOWN';
 export type TileValue = number | null;
 export type Grid = TileValue[][];
 
@@ -35,16 +28,23 @@ export class MoveTile {
   toDirection(direction: Direction) {
     const grid = this.gameRepository.fetch();
 
-    const iterationDirection = direction === 'LEFT' ? -1 : 1;
+    if (Array.from<Direction>(['LEFT', 'RIGHT']).includes(direction)) {
+      const iterationDirection = direction === 'LEFT' ? -1 : 1;
 
-    let currentIndex = direction === 'LEFT' ? grid[0].length - 1 : 0;
-    let nextIndex = currentIndex + iterationDirection;
+      let currentIndex = direction === 'LEFT' ? grid[0].length - 1 : 0;
+      let nextIndex = currentIndex + iterationDirection;
 
-    while (grid[0][nextIndex] === null) {
-      grid[0][nextIndex] = grid[0][currentIndex];
-      grid[0][currentIndex] = null;
-      currentIndex += iterationDirection;
-      nextIndex += iterationDirection;
+      while (grid[0][nextIndex] === null) {
+        grid[0][nextIndex] = grid[0][currentIndex];
+        grid[0][currentIndex] = null;
+        currentIndex += iterationDirection;
+        nextIndex += iterationDirection;
+      }
+    } else {
+      if (grid[1][0] === null) {
+        grid[1][0] = grid[0][0];
+        grid[0][0] = null;
+      }
     }
 
     this.gameRepository.save(grid);
