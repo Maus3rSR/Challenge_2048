@@ -53,9 +53,16 @@ export class MoveTile {
         }
       }
 
-      if (grid[0][0] === null && direction === 'UP') {
-        grid[0][0] = grid[1][0];
-        grid[1][0] = null;
+      if (direction === 'UP') {
+        if (grid[1][0] === null) {
+          grid[1][0] = grid[2][0];
+          grid[2][0] = null;
+        }
+
+        if (grid[0][0] === null) {
+          grid[0][0] = grid[1][0];
+          grid[1][0] = null;
+        }
       }
     }
 
