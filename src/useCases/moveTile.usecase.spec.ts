@@ -41,9 +41,16 @@ export class MoveTile {
         nextIndex += iterationDirection;
       }
     } else {
-      if (grid[1][0] === null && direction === 'DOWN') {
-        grid[1][0] = grid[0][0];
-        grid[0][0] = null;
+      if (direction === 'DOWN') {
+        if (grid[1][0] === null) {
+          grid[1][0] = grid[0][0];
+          grid[0][0] = null;
+        }
+
+        if (grid[2] !== undefined && grid[2][0] === null) {
+          grid[2][0] = grid[1][0];
+          grid[1][0] = null;
+        }
       }
 
       if (grid[0][0] === null && direction === 'UP') {
@@ -89,6 +96,11 @@ describe('Move tiles to a specific direction', () => {
       direction: 'DOWN',
       grid: [[2], [null]],
       expectedGrid: [[null], [2]],
+    },
+    {
+      direction: 'DOWN',
+      grid: [[2], [null], [null]],
+      expectedGrid: [[null], [null], [2]],
     },
     {
       direction: 'UP',
