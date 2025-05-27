@@ -51,18 +51,24 @@ export class MoveTile {
         columnIndex++;
       }
     } else if (Array.from<Direction>(['UP', 'DOWN']).includes(direction)) {
-      let columnIndex = direction === 'UP' ? grid.length - 1 : 0;
-      let nextColumnIndex = columnIndex + iterationDirection;
+      let rowIndex = 0;
 
-      while (
-        grid[nextColumnIndex] !== undefined &&
-        grid[nextColumnIndex][0] === null
-      ) {
-        grid[nextColumnIndex][0] = grid[columnIndex][0];
-        grid[columnIndex][0] = null;
+      while (grid[rowIndex] !== undefined) {
+        let columnIndex = direction === 'UP' ? grid.length - 1 : 0;
+        let nextColumnIndex = columnIndex + iterationDirection;
 
-        columnIndex += iterationDirection;
-        nextColumnIndex += iterationDirection;
+        while (
+          grid[nextColumnIndex] !== undefined &&
+          grid[nextColumnIndex][rowIndex] === null
+        ) {
+          grid[nextColumnIndex][rowIndex] = grid[columnIndex][rowIndex];
+          grid[columnIndex][rowIndex] = null;
+
+          columnIndex += iterationDirection;
+          nextColumnIndex += iterationDirection;
+        }
+
+        rowIndex++;
       }
     }
 
