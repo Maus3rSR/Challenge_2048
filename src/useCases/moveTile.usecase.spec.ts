@@ -29,16 +29,23 @@ export class MoveTile {
     const grid = this.gameRepository.fetch();
 
     if (Array.from<Direction>(['LEFT', 'RIGHT']).includes(direction)) {
-      const iterationDirection = direction === 'LEFT' ? -1 : 1;
+      let columnIndex = 0;
+      while (grid[columnIndex] !== undefined) {
+        const iterationDirection = direction === 'LEFT' ? -1 : 1;
 
-      let currentIndex = direction === 'LEFT' ? grid[0].length - 1 : 0;
-      let nextIndex = currentIndex + iterationDirection;
+        let currentIndex =
+          direction === 'LEFT' ? grid[columnIndex].length - 1 : 0;
+        let nextIndex = currentIndex + iterationDirection;
 
-      while (grid[0][nextIndex] === null) {
-        grid[0][nextIndex] = grid[0][currentIndex];
-        grid[0][currentIndex] = null;
-        currentIndex += iterationDirection;
-        nextIndex += iterationDirection;
+        while (grid[columnIndex][nextIndex] === null) {
+          grid[columnIndex][nextIndex] = grid[columnIndex][currentIndex];
+          grid[columnIndex][currentIndex] = null;
+
+          currentIndex += iterationDirection;
+          nextIndex += iterationDirection;
+        }
+
+        columnIndex++;
       }
     } else if (Array.from<Direction>(['UP', 'DOWN']).includes(direction)) {
       const iterationDirection = direction === 'UP' ? -1 : 1;
