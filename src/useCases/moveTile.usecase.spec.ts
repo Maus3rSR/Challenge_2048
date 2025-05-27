@@ -40,7 +40,7 @@ export class MoveTile {
         currentIndex += iterationDirection;
         nextIndex += iterationDirection;
       }
-    } else {
+    } else if (Array.from<Direction>(['UP', 'DOWN']).includes(direction)) {
       const iterationDirection = direction === 'UP' ? -1 : 1;
 
       let currentIndex = direction === 'UP' ? grid.length - 1 : 0;
