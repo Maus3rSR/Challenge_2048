@@ -1,5 +1,15 @@
 # 2048 - the Return
 
+## Information sur ce dépôt
+
+**Ce dépôt est une expérimentation de l'approche TDD dans un contexte plus large que les katas.**
+Les messages des commits ont été laissés de côté spécifiquement pour ce dépôt avec uniquement l'utilisation des "red / green / refactor" et quelques commits de préparation.
+
+De cette manière (pas optimal pour un vrai projet nous sommes d'accord) nous pouvons suivre l'évolution itérative des cas d'utilisation.
+
+_PS: Les baby steps n'ont pas été respecté de manière stricte ici._
+_Le dépôt a été utilisé pour expérimenter la conception du jeu 2048 et de l'utiliser pour l'implémenter dans un projet d'étudiants avec une application web, ce qui m'a poussé à être un peu plus pragmatique sur certaines opérations._
+
 ## Règles du jeu
 
 Règles d'un 2048
