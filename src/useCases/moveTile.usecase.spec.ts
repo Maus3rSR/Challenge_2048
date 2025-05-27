@@ -108,6 +108,17 @@ describe('Move tiles to a specific direction', () => {
       grid: [[null], [null], [2]],
       expectedGrid: [[2], [null], [null]],
     },
+    {
+      direction: 'RIGHT',
+      grid: [
+        [2, null],
+        [2, null],
+      ],
+      expectedGrid: [
+        [null, 2],
+        [null, 2],
+      ],
+    },
   ])(
     'Should move tiles to the <$direction> edge: $grid -> $expectedGrid',
     ({ direction, grid, expectedGrid }) => {
