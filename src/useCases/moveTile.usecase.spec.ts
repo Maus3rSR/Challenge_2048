@@ -33,16 +33,15 @@ export class MoveTile {
       while (grid[columnIndex] !== undefined) {
         const iterationDirection = direction === 'LEFT' ? -1 : 1;
 
-        let currentIndex =
-          direction === 'LEFT' ? grid[columnIndex].length - 1 : 0;
-        let nextIndex = currentIndex + iterationDirection;
+        let rowIndex = direction === 'LEFT' ? grid[columnIndex].length - 1 : 0;
+        let nextRowIndex = rowIndex + iterationDirection;
 
-        while (grid[columnIndex][nextIndex] === null) {
-          grid[columnIndex][nextIndex] = grid[columnIndex][currentIndex];
-          grid[columnIndex][currentIndex] = null;
+        while (grid[columnIndex][nextRowIndex] === null) {
+          grid[columnIndex][nextRowIndex] = grid[columnIndex][rowIndex];
+          grid[columnIndex][rowIndex] = null;
 
-          currentIndex += iterationDirection;
-          nextIndex += iterationDirection;
+          rowIndex += iterationDirection;
+          nextRowIndex += iterationDirection;
         }
 
         columnIndex++;
