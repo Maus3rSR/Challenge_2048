@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 
 import { Grid, MoveTile, Direction } from './moveTile.usecase.js';
-import { StubGame2048Repository } from '../stubs.test.js';
+import { StubGame2048Repository } from '../tests/stubs.js';
 
 type MoveGridTest = {
   direction: Direction;
