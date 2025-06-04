@@ -1,7 +1,7 @@
 import { describe, it } from 'vitest';
 
 import { Game2048Repository } from 'src/ports/game2048.repository.js';
-import { Direction, Grid, MoveTile } from './moveTile/moveTile.usecase.js';
+import { Grid, MoveTile, Direction } from './moveTile.usecase.js';
 
 export class StubGame2048Repository implements Game2048Repository {
   grid: Grid;
